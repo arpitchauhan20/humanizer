@@ -6,6 +6,18 @@ document.addEventListener('DOMContentLoaded', () => {
 function updateInputCount() {
     const text = document.getElementById('inputText').value;
     document.getElementById('inputCharCount').innerText = `${text.length} characters`;
+
+    // Simulate AI detection for input text
+    const inputAiScoreDisplay = document.getElementById('inputAiScoreDisplay');
+    if (text.trim().length > 30) {
+        // Raw AI text typically scores very low on human detection (e.g. 0-15%)
+        const score = Math.floor(Math.random() * 16); 
+        inputAiScoreDisplay.innerText = `${score}% Human`;
+        inputAiScoreDisplay.className = 'ai-score ai-score-bad';
+        inputAiScoreDisplay.style.display = 'inline-block';
+    } else {
+        inputAiScoreDisplay.style.display = 'none';
+    }
 }
 
 function updateOutputCount() {
@@ -103,10 +115,11 @@ Only return the humanized text. Do not include any extra introductory or conclud
                 updateOutputCount();
 
                 const aiScoreDisplay = document.getElementById('aiScoreDisplay');
+                aiScoreDisplay.className = 'ai-score ai-score-good';
                 aiScoreDisplay.style.display = 'inline-block';
-                // Randomly generate a low AI score for realism (1-4%)
-                const score = Math.floor(Math.random() * 4) + 1;
-                aiScoreDisplay.innerText = `AI Score: ${score}% (Human)`;
+                // Randomly generate a high human score for realism (95-100%)
+                const score = Math.floor(Math.random() * 6) + 95;
+                aiScoreDisplay.innerText = `${score}% Human`;
             } else {
                 throw new Error("Invalid response from API");
             }
@@ -159,6 +172,7 @@ function clearTexts() {
     updateInputCount();
     updateOutputCount();
     document.getElementById('aiScoreDisplay').style.display = 'none';
+    document.getElementById('inputAiScoreDisplay').style.display = 'none';
 }
 
 function swapTexts() {

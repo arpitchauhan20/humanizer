@@ -105,7 +105,10 @@
                     <div class="text-group">
                         <div class="text-group-header">
                             <label><i class="fas fa-robot"></i> AI Text to Humanize</label>
-                            <span class="char-count" id="inputCharCount">0 characters</span>
+                            <div>
+                                <span class="ai-score" id="inputAiScoreDisplay" style="display: none; margin-right: 10px;">-</span>
+                                <span class="char-count" id="inputCharCount">0 characters</span>
+                            </div>
                         </div>
                         <textarea id="inputText"
                             placeholder="Paste your AI-generated text here...&#10;&#10;Example: The quick brown fox jumps over the lazy dog."
