@@ -39,7 +39,7 @@ function processText() {
     // DO NOT paste the entire key as a single string.
     // Paste the first half of your NEW key in part1, and the second half in part2.
     const keyPart1 = "AIzaSy"; // <-- REPLACE THIS WITH THE FIRST 6 CHARACTERS OF YOUR NEW KEY
-    const keyPart2 = "CKPM3_9TIQLYZOJa5jzz3ON_YT42g1SW8"; // <-- REPLACE THIS WITH THE REST OF YOUR NEW KEY
+    const keyPart2 = "CVXpnAvRkqpZ94f7zPXulf9KaBIGJEWEI"; // <-- REPLACE THIS WITH THE REST OF YOUR NEW KEY
     const apiKey = keyPart1 + keyPart2;
 
     // UI Loading State
