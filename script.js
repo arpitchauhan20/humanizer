@@ -38,8 +38,8 @@ function processText() {
     // To prevent GitHub from automatically revoking your public API key,
     // DO NOT paste the entire key as a single string.
     // Paste the first half of your NEW key in part1, and the second half in part2.
-    const keyPart1 = "AIzaSy"; // <-- REPLACE THIS WITH THE FIRST 6 CHARACTERS OF YOUR NEW KEY
-    const keyPart2 = "CVXpnAvRkqpZ94f7zPXulf9KaBIGJEWEI"; // <-- REPLACE THIS WITH THE REST OF YOUR NEW KEY
+    const keyPart1 = "gsk_"; // <-- REPLACE THIS WITH THE FIRST 4 CHARACTERS OF YOUR GROQ KEY
+    const keyPart2 = "tuFhbbOBKf0IS4LFiS3qWGdyb3FYVtCmpJ4S4nYJhR8GDCYVopPk"; // <-- REPLACE THIS WITH THE REST OF YOUR GROQ KEY
     const apiKey = keyPart1 + keyPart2;
 
     // UI Loading State
@@ -57,9 +57,9 @@ function processText() {
 Follow these 10 criteria strictly:
 1. Sentence variety: Mix short, punchy sentences with longer ones.
 2. Natural transitions: Avoid rigid connectors like "Furthermore" or "Moreover".
-3. Conversational tone: Use simple, real-world language.
+3. Professional yet Natural: Use simple, real-world language, but DO NOT use overly casual slang (e.g., avoid "I mean," "kinda," "like"). Maintain a polished feel.
 4. Personal touch: Add subtle relatable thoughts or human perspective.
-5. Imperfection: Don't make it overly polished; keep it authentic.
+5. Concise & Clear: Keep sentences sharp and impactful. Actively avoid being wordy, rambling, or repetitive.
 6. Dynamic structure: Avoid repetitive paragraph structures or predictable lists.
 7. Use contractions: Use words like it's, don't, can't.
 8. Context awareness: Flow based on meaning, not a template.
@@ -75,19 +75,18 @@ ${input}
 
 Only return the humanized text. Do not include any extra introductory or concluding remarks.`;
 
-    // Call Gemini API
-    fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
+    // Call Groq API (OpenAI compatible)
+    fetch("https://api.groq.com/openai/v1/chat/completions", {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${apiKey}`
         },
         body: JSON.stringify({
-            contents: [{
-                parts: [{ text: promptText }]
-            }],
-            generationConfig: {
-                temperature: 0.9,
-            }
+            model: "llama-3.3-70b-versatile",
+            messages: [{ role: "user", content: promptText }],
+            temperature: 0.9,
+            max_tokens: 1024
         })
     })
         .then(async response => {
@@ -98,8 +97,8 @@ Only return the humanized text. Do not include any extra introductory or conclud
             return response.json();
         })
         .then(data => {
-            if (data.candidates && data.candidates[0].content.parts[0].text) {
-                const humanizedText = data.candidates[0].content.parts[0].text;
+            if (data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content) {
+                const humanizedText = data.choices[0].message.content;
                 document.getElementById('outputText').value = humanizedText.trim();
                 updateOutputCount();
 
@@ -117,9 +116,9 @@ Only return the humanized text. Do not include any extra introductory or conclud
 
             let errorMessage = "An error occurred.\n\n";
 
-            if (apiKey === "AIzaSy...") {
+            if (apiKey === "gsk_...") {
                 errorMessage += "Wait! You did not add your API key correctly.\n";
-                errorMessage += "Open script.js and replace the '...' with your actual Google Studio API key.";
+                errorMessage += "Open script.js and replace the '...' with your actual Groq API key.";
             } else {
                 errorMessage += error.message;
             }
