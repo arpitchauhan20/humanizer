@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Text Humanizer - Best AI Wrapper Detector Bypass Tool</title>
+    <meta name="description"
+        content="Best AI Text Humanizer | 100% Bypass AI Detection | Rewrite & paraphrase AI content to sound natural and human.">
+    <meta name="keywords"
+        content="AI Text Humanizer, Humanize AI Text, Bypass AI Detection, Anti AI Detector, AI Paraphraser, AI Rewriter, Make AI Writing Human, Humanize AI Content">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6233763571074440"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+    <header>
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-robot"></i> AI Text Humanizer
+            </div>
+            <div class="header-actions">
+                <div class="ads-badge">ADS</div>
+                <button class="btn btn-primary" onclick="openModal('about')">About Tool</button>
+                <button class="btn btn-secondary" onclick="openModal('how-to')">How it works</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="hero">
+            <h1>Make Your AI Content Sound <span class="gradient-text">100% Human</span></h1>
+            <p class="subtitle">Bypass AI detection effortlessly. Rewrite and paraphrase AI-generated text to sound
+                natural, unique, and truly undetectable.</p>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon-wrapper">
+                        <i class="fas fa-magic"></i>
+                    </div>
+                    <h3>Instant Transformation</h3>
+                    <p>Convert AI text to human-like content in seconds using advanced paraphrasing algorithms.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon-wrapper">
+                        <i class="fas fa-check-double"></i>
+                    </div>
+                    <h3>100% Undetectable</h3>
+                    <p>Advanced AI detection bypass technology that consistently beats GPTZero, Originality.ai, and Turnitin.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon-wrapper">
+                        <i class="fas fa-language"></i>
+                    </div>
+                    <h3>Multiple Languages</h3>
+                    <p>Supports 50+ languages with culturally accurate adaptation and localization.</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="ads-container">
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6233763571074440"
+                data-ad-slot="4727138845" data-ad-format="auto" data-full-width-responsive="true"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+
+        <section class="tool-section">
+            <div class="tool-card">
+                <div class="tool-header">
+                    <h2>Paste Your AI Text Below</h2>
+                    <p class="subtitle" style="margin-top: 10px; color: var(--text-secondary);">Select a mode and paste your AI-generated content to make it sound natural.</p>
+                </div>
+
+                <div class="control-panel">
+                    <label class="mode-label">Processing Mode</label>
+                    <div class="mode-selector">
+                        <button class="mode-btn active" onclick="setMode('normal')">
+                            <i class="fas fa-language"></i> Normal
+                        </button>
+                        <button class="mode-btn" onclick="setMode('creative')">
+                            <i class="fas fa-palette"></i> Creative
+                        </button>
+                        <button class="mode-btn" onclick="setMode('undetectable')">
+                            <i class="fas fa-mask"></i> Undetectable
+                        </button>
+                        <button class="mode-btn" onclick="setMode('rephrase')">
+                            <i class="fas fa-repeat"></i> Rephrase
+                        </button>
+                    </div>
+
+                    <div class="mode-info">
+                        <i class="fas fa-info-circle"></i>
+                        <span id="modeText">Normal mode: 3-5% changes, best for general readability and flow</span>
+                    </div>
+                </div>
+
+                <div class="text-areas">
+                    <div class="text-group">
+                        <div class="text-group-header">
+                            <label><i class="fas fa-robot"></i> AI Text to Humanize</label>
+                            <span class="char-count" id="inputCharCount">0 characters</span>
+                        </div>
+                        <textarea id="inputText"
+                            placeholder="Paste your AI-generated text here...&#10;&#10;Example: The quick brown fox jumps over the lazy dog."
+                            rows="12" oninput="updateInputCount()"></textarea>
+                    </div>
+
+                    <div class="action-buttons">
+                        <button class="btn btn-primary" onclick="processText()" id="processBtn" title="Convert AI text to human-like text">
+                            <i class="fas fa-magic"></i> Humanize Now
+                        </button>
+                        <button class="btn btn-secondary" onclick="copyToClipboard('outputText')" title="Copy humanized text to clipboard">
+                            <i class="fas fa-copy"></i> Copy Output
+                        </button>
+                        <button class="btn btn-secondary" onclick="swapTexts()" title="Swap input and output text">
+                            <i class="fas fa-exchange-alt"></i> Swap Texts
+                        </button>
+                        <button class="btn btn-secondary" onclick="downloadText()" title="Download output as .txt file">
+                            <i class="fas fa-download"></i> Download
+                        </button>
+                        <button class="btn btn-secondary" onclick="clearTexts()" title="Clear both text areas">
+                            <i class="fas fa-trash-alt"></i> Clear All
+                        </button>
+                    </div>
+
+                    <div class="text-group">
+                        <div class="text-group-header">
+                            <label><i class="fas fa-user-edit"></i> Humanized Text</label>
+                            <div>
+                                <span class="ai-score" id="aiScoreDisplay" style="display: none; margin-right: 10px;">AI Score: -</span>
+                                <span class="char-count" id="outputCharCount">0 characters</span>
+                            </div>
+                        </div>
+                        <textarea id="outputText" placeholder="Your completely humanized text will appear here..." rows="12" readonly></textarea>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <div class="ads-container">
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6233763571074440"
+                data-ad-slot="4727138845" data-ad-format="auto" data-full-width-responsive="true"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+
+        <section class="criteria-section">
+            <div class="section-header">
+                <h2>Our 10-Point <span class="gradient-text">Humanization Criteria</span></h2>
+                <p class="subtitle" style="color: var(--text-secondary); font-size: 1.1rem;">How our algorithm ensures your text reads exactly like a human wrote it.</p>
+            </div>
+            
+            <div class="criteria-grid">
+                <div class="criteria-card">
+                    <div class="criteria-icon"><i class="fas fa-align-left"></i></div>
+                    <h4>1. Sentence Variety</h4>
+                    <p>Mixes short, punchy sentences with longer, complex ones to create a natural, engaging reading rhythm.</p>
+                </div>
+                <div class="criteria-card">
+                    <div class="criteria-icon"><i class="fas fa-water"></i></div>
+                    <h4>2. Natural Transitions</h4>
+                    <p>Replaces rigid, robotic connectors (like "Furthermore") with seamless, conversational transitions.</p>
+                </div>
+                <div class="criteria-card">
+                    <div class="criteria-icon"><i class="fas fa-comments"></i></div>
+                    <h4>3. Conversational Tone</h4>
+                    <p>Uses simple, real-world language that feels approachable rather than overly academic.</p>
+                </div>
+                <div class="criteria-card">
+                    <div class="criteria-icon"><i class="fas fa-user"></i></div>
+                    <h4>4. Personal Touch</h4>
+                    <p>Weaves in subtle opinions, real-world examples, and small details reflecting genuine human thought.</p>
+                </div>
+                <div class="criteria-card">
+                    <div class="criteria-icon"><i class="fas fa-pen-fancy"></i></div>
+                    <h4>5. Embracing Imperfection</h4>
+                    <p>Avoids the "too-perfect" structure of AI, retaining the raw, authentic feel of human writing.</p>
+                </div>
+                <div class="criteria-card">
+                    <div class="criteria-icon"><i class="fas fa-stream"></i></div>
+                    <h4>6. Dynamic Structure</h4>
+                    <p>Actively avoids repetitive paragraph structures and list formats that often trigger AI detectors.</p>
+                </div>
+                <div class="criteria-card">
+                    <div class="criteria-icon"><i class="fas fa-quote-left"></i></div>
+                    <h4>7. Natural Contractions</h4>
+                    <p>Properly utilizes everyday contractions (it's, don't, can't) to mimic natural speech patterns.</p>
+                </div>
+                <div class="criteria-card">
+                    <div class="criteria-icon"><i class="fas fa-brain"></i></div>
+                    <h4>8. Context Awareness</h4>
+                    <p>Adapts the flow based on the text's actual meaning, entirely avoiding plug-and-play templates.</p>
+                </div>
+                <div class="criteria-card">
+                    <div class="criteria-icon"><i class="fas fa-random"></i></div>
+                    <h4>9. Unpredictable Phrasing</h4>
+                    <p>Removes common AI clichés and highly predictable word pairings in favor of creative phrasing.</p>
+                </div>
+                <div class="criteria-card">
+                    <div class="criteria-icon"><i class="fas fa-heart"></i></div>
+                    <h4>10. Emotional Resonance</h4>
+                    <p>Introduces relatable elements and subtle emotional undertones that truly resonate with readers.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 AI Text Humanizer. All rights reserved.</p>
+            <p style="font-size: 0.9rem; opacity: 0.7;">100% Undetectable by GPTZero, Turnitin, Originality.ai & More.</p>
+        </div>
+    </footer>
+
+    <!-- Modal Layout -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal()"><i class="fas fa-times"></i></button>
+            <h3 id="modalTitle">Modal Title</h3>
+            <div id="modalBody">
+                Modal content goes here.
+            </div>
+        </div>
+    </div>
+
+    <!-- External Script -->
+    <script src="script.js"></script>
+</body>
+</html>
