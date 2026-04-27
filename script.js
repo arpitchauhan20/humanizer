@@ -77,6 +77,7 @@ Follow these 10 criteria strictly:
 8. Context awareness: Flow based on meaning, not a template.
 9. Untidy Conclusions: Do not cleanly wrap up the text with a tidy summary. End with a lingering doubt, a question, or a punchy one-liner.
 10. Emotional elements: Make it resonate with human emotion.
+11. Formatting & Spacing: You MUST break the text into multiple, distinct paragraphs with proper line breaks between them. Do NOT return a single giant block of text.
 
 Processing Mode applied: ${mode}
 
