@@ -35,8 +35,12 @@ function processText() {
         return;
     }
 
-    // Use the provided Gemini API key
-    const apiKey = 'AIzaSyCKPM3_9TIQLYZOJa5jzz3ON_YT42g1SW8';
+    // Read the Gemini API key from the user input
+    const apiKey = document.getElementById('geminiApiKey').value.trim();
+    if (!apiKey) {
+        alert('Please enter your Gemini API Key. Because the site is public, you must provide your own key.');
+        return;
+    }
 
     // UI Loading State
     btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
