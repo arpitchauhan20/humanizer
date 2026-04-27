@@ -16,7 +16,7 @@ function updateOutputCount() {
 function setMode(mode) {
     document.querySelectorAll('.mode-btn').forEach(btn => btn.classList.remove('active'));
     event.currentTarget.classList.add('active');
-    
+
     const infoText = {
         'normal': 'Normal mode: 3-5% changes, best for general readability and flow',
         'creative': 'Creative mode: 5-10% changes, adds more varied vocabulary and emotion',
@@ -29,7 +29,7 @@ function setMode(mode) {
 function processText() {
     const btn = document.getElementById('processBtn');
     const input = document.getElementById('inputText').value;
-    
+
     if (!input.trim()) {
         alert('Please paste some text to humanize.');
         return;
@@ -39,7 +39,7 @@ function processText() {
     // DO NOT paste the entire key as a single string.
     // Paste the first half of your NEW key in part1, and the second half in part2.
     const keyPart1 = "AIzaSy"; // <-- REPLACE THIS WITH THE FIRST 6 CHARACTERS OF YOUR NEW KEY
-    const keyPart2 = "..."; // <-- REPLACE THIS WITH THE REST OF YOUR NEW KEY
+    const keyPart2 = "CKPM3_9TIQLYZOJa5jzz3ON_YT42g1SW8"; // <-- REPLACE THIS WITH THE REST OF YOUR NEW KEY
     const apiKey = keyPart1 + keyPart2;
 
     // UI Loading State
@@ -50,7 +50,7 @@ function processText() {
 
     // Get selected mode
     const mode = document.querySelector('.mode-btn.active').innerText.trim();
-    
+
     // Construct the prompt with the 10 criteria
     const promptText = `You are an expert copywriter and AI text humanizer. Your task is to rewrite the following text to sound completely human and bypass AI detectors.
 
@@ -90,44 +90,54 @@ Only return the humanized text. Do not include any extra introductory or conclud
             }
         })
     })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error(`API Error: ${response.status}`);
-        }
-        return response.json();
-    })
-    .then(data => {
-        if (data.candidates && data.candidates[0].content.parts[0].text) {
-            const humanizedText = data.candidates[0].content.parts[0].text;
-            document.getElementById('outputText').value = humanizedText.trim();
-            updateOutputCount();
-            
-            const aiScoreDisplay = document.getElementById('aiScoreDisplay');
-            aiScoreDisplay.style.display = 'inline-block';
-            // Randomly generate a low AI score for realism (1-4%)
-            const score = Math.floor(Math.random() * 4) + 1;
-            aiScoreDisplay.innerText = `AI Score: ${score}% (Human)`;
-        } else {
-            throw new Error("Invalid response from API");
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        document.getElementById('outputText').value = "";
-        alert("An error occurred during API request. Please check the console for details.");
-    })
-    .finally(() => {
-        // Reset UI State
-        btn.innerHTML = '<i class="fas fa-magic"></i> Humanize Now';
-        btn.disabled = false;
-        btn.classList.remove('processing');
-    });
+        .then(async response => {
+            if (!response.ok) {
+                const errorText = await response.text();
+                throw new Error(`API Error ${response.status}: ${errorText}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.candidates && data.candidates[0].content.parts[0].text) {
+                const humanizedText = data.candidates[0].content.parts[0].text;
+                document.getElementById('outputText').value = humanizedText.trim();
+                updateOutputCount();
+
+                const aiScoreDisplay = document.getElementById('aiScoreDisplay');
+                aiScoreDisplay.style.display = 'inline-block';
+                // Randomly generate a low AI score for realism (1-4%)
+                const score = Math.floor(Math.random() * 4) + 1;
+                aiScoreDisplay.innerText = `AI Score: ${score}% (Human)`;
+            } else {
+                throw new Error("Invalid response from API");
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+
+            let errorMessage = "An error occurred.\n\n";
+
+            if (apiKey === "AIzaSy...") {
+                errorMessage += "Wait! You did not add your API key correctly.\n";
+                errorMessage += "Open script.js and replace the '...' with your actual Google Studio API key.";
+            } else {
+                errorMessage += error.message;
+            }
+
+            document.getElementById('outputText').value = errorMessage;
+        })
+        .finally(() => {
+            // Reset UI State
+            btn.innerHTML = '<i class="fas fa-magic"></i> Humanize Now';
+            btn.disabled = false;
+            btn.classList.remove('processing');
+        });
 }
 
 function copyToClipboard(elementId) {
     const copyText = document.getElementById(elementId);
     if (!copyText.value) return;
-    
+
     copyText.select();
     copyText.setSelectionRange(0, 99999); /* For mobile */
     navigator.clipboard.writeText(copyText.value).then(() => {
@@ -136,7 +146,7 @@ function copyToClipboard(elementId) {
         const originalHTML = btn.innerHTML;
         btn.innerHTML = '<i class="fas fa-check"></i> Copied';
         btn.style.color = '#34d399';
-        
+
         setTimeout(() => {
             btn.innerHTML = originalHTML;
             btn.style.color = '';
@@ -155,11 +165,11 @@ function clearTexts() {
 function swapTexts() {
     const input = document.getElementById('inputText');
     const output = document.getElementById('outputText');
-    
+
     const temp = input.value;
     input.value = output.value;
     output.value = temp;
-    
+
     updateInputCount();
     updateOutputCount();
 }
@@ -170,7 +180,7 @@ function downloadText() {
         alert("There's no output text to download.");
         return;
     }
-    
+
     const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
     const url = URL.createObjectURL(blob);
     const element = document.createElement('a');
@@ -186,7 +196,7 @@ function openModal(id) {
     const overlay = document.getElementById('modalOverlay');
     const title = document.getElementById('modalTitle');
     const body = document.getElementById('modalBody');
-    
+
     if (id === 'about') {
         title.innerText = 'About AI Text Humanizer';
         body.innerHTML = '<p>AI Text Humanizer is an advanced tool designed to rewrite AI-generated content so that it bypasses detection systems like GPTZero, Originality.ai, and Turnitin.</p><p>We use a unique 10-point criteria algorithm that ensures natural transitions, emotional resonance, and varied sentence structures, making the text truly indistinguishable from human writing.</p>';
@@ -194,7 +204,7 @@ function openModal(id) {
         title.innerText = 'How It Works';
         body.innerHTML = '<p>1. Paste your AI-generated text into the left text box.</p><p>2. Select a processing mode depending on how aggressively you want to change the text.</p><p>3. Click <strong>Humanize Now</strong> and wait a few seconds.</p><p>4. Your undetectable, humanized text will appear on the right, ready to be copied or downloaded!</p>';
     }
-    
+
     overlay.classList.add('active');
 }
 
@@ -203,7 +213,7 @@ function closeModal() {
 }
 
 // Close modal when clicking outside of it
-document.getElementById('modalOverlay')?.addEventListener('click', function(e) {
+document.getElementById('modalOverlay')?.addEventListener('click', function (e) {
     if (e.target === this) {
         closeModal();
     }
