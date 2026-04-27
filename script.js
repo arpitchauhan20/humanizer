@@ -56,14 +56,14 @@ function processText() {
 
 Follow these 10 criteria strictly:
 1. Sentence variety: Mix short, punchy sentences with longer ones.
-2. Natural transitions: Avoid rigid connectors like "Furthermore" or "Moreover".
+2. Natural transitions: Avoid rigid or essay-template connectors like "Furthermore", "Moreover", "For one", or "What's more".
 3. Professional yet Natural: Use simple, real-world language, but DO NOT use overly casual slang (e.g., avoid "I mean," "kinda," "like"). Maintain a polished feel.
-4. Personal touch: Add subtle relatable thoughts or human perspective.
+4. Specific Examples: Ground the text with specific, real-world examples (e.g., dropping a real tool name or real scenario) rather than generalizing.
 5. Concise & Clear: Keep sentences sharp and impactful. Actively avoid being wordy, rambling, or repetitive.
-6. Dynamic structure: Avoid repetitive paragraph structures or predictable lists.
+6. Dynamic structure: Actively avoid "constructed" repetition (e.g., "highly this, highly that") and repetitive paragraph structures.
 7. Use contractions: Use words like it's, don't, can't.
 8. Context awareness: Flow based on meaning, not a template.
-9. Less predictable phrasing: Avoid AI clichés (e.g., "In conclusion", "It's important to note").
+9. Untidy Conclusions: Do not cleanly wrap up the text with a tidy summary. End with a lingering doubt, a question, or a punchy one-liner.
 10. Emotional elements: Make it resonate with human emotion.
 
 Processing Mode applied: ${mode}
