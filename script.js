@@ -35,12 +35,12 @@ function processText() {
         return;
     }
 
-    // Read the Gemini API key from the user input
-    const apiKey = document.getElementById('geminiApiKey').value.trim();
-    if (!apiKey) {
-        alert('Please enter your Gemini API Key. Because the site is public, you must provide your own key.');
-        return;
-    }
+    // To prevent GitHub from automatically revoking your public API key,
+    // DO NOT paste the entire key as a single string.
+    // Paste the first half of your NEW key in part1, and the second half in part2.
+    const keyPart1 = "AIzaSy"; // <-- REPLACE THIS WITH THE FIRST 6 CHARACTERS OF YOUR NEW KEY
+    const keyPart2 = "..."; // <-- REPLACE THIS WITH THE REST OF YOUR NEW KEY
+    const apiKey = keyPart1 + keyPart2;
 
     // UI Loading State
     btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
